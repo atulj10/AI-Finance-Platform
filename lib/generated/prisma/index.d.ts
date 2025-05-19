@@ -47,8 +47,8 @@ export type AccountType = (typeof AccountType)[keyof typeof AccountType]
 
 
 export const TransactionType: {
-  CURRENT: 'CURRENT',
-  SAVINGS: 'SAVINGS'
+  INCOME: 'INCOME',
+  EXPENSE: 'EXPENSE'
 };
 
 export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
