@@ -5008,7 +5008,7 @@ export namespace Prisma {
     id: string
     amount: Decimal
     lastAlertSent: Date | null
-    userId: string | null
+    userId: string
     createdAt: Date
     updatedAt: Date
     _count: BudgetCountAggregateOutputType | null
@@ -5039,7 +5039,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Budget$userArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["budget"]>
 
   export type BudgetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5049,7 +5049,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Budget$userArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["budget"]>
 
   export type BudgetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5059,7 +5059,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Budget$userArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["budget"]>
 
   export type BudgetSelectScalar = {
@@ -5073,25 +5073,25 @@ export namespace Prisma {
 
   export type BudgetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "lastAlertSent" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["budget"]>
   export type BudgetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Budget$userArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type BudgetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Budget$userArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type BudgetIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Budget$userArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $BudgetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Budget"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       amount: Prisma.Decimal
       lastAlertSent: Date | null
-      userId: string | null
+      userId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["budget"]>
@@ -5488,7 +5488,7 @@ export namespace Prisma {
    */
   export interface Prisma__BudgetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends Budget$userArgs<ExtArgs> = {}>(args?: Subset<T, Budget$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5917,25 +5917,6 @@ export namespace Prisma {
      * Limit how many Budgets to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Budget.user
-   */
-  export type Budget$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
   }
 
   /**
@@ -6451,17 +6432,17 @@ export namespace Prisma {
     id?: StringFilter<"Budget"> | string
     amount?: DecimalFilter<"Budget"> | Decimal | DecimalJsLike | number | string
     lastAlertSent?: DateTimeNullableFilter<"Budget"> | Date | string | null
-    userId?: StringNullableFilter<"Budget"> | string | null
+    userId?: StringFilter<"Budget"> | string
     createdAt?: DateTimeFilter<"Budget"> | Date | string
     updatedAt?: DateTimeFilter<"Budget"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type BudgetOrderByWithRelationInput = {
     id?: SortOrder
     amount?: SortOrder
     lastAlertSent?: SortOrderInput | SortOrder
-    userId?: SortOrderInput | SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -6469,22 +6450,22 @@ export namespace Prisma {
 
   export type BudgetWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId?: string
     AND?: BudgetWhereInput | BudgetWhereInput[]
     OR?: BudgetWhereInput[]
     NOT?: BudgetWhereInput | BudgetWhereInput[]
     amount?: DecimalFilter<"Budget"> | Decimal | DecimalJsLike | number | string
     lastAlertSent?: DateTimeNullableFilter<"Budget"> | Date | string | null
-    userId?: StringNullableFilter<"Budget"> | string | null
     createdAt?: DateTimeFilter<"Budget"> | Date | string
     updatedAt?: DateTimeFilter<"Budget"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id">
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
 
   export type BudgetOrderByWithAggregationInput = {
     id?: SortOrder
     amount?: SortOrder
     lastAlertSent?: SortOrderInput | SortOrder
-    userId?: SortOrderInput | SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BudgetCountOrderByAggregateInput
@@ -6501,7 +6482,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Budget"> | string
     amount?: DecimalWithAggregatesFilter<"Budget"> | Decimal | DecimalJsLike | number | string
     lastAlertSent?: DateTimeNullableWithAggregatesFilter<"Budget"> | Date | string | null
-    userId?: StringNullableWithAggregatesFilter<"Budget"> | string | null
+    userId?: StringWithAggregatesFilter<"Budget"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Budget"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Budget"> | Date | string
   }
@@ -6805,14 +6786,14 @@ export namespace Prisma {
     lastAlertSent?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutBudgetsInput
+    user: UserCreateNestedOneWithoutBudgetsInput
   }
 
   export type BudgetUncheckedCreateInput = {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
     lastAlertSent?: Date | string | null
-    userId?: string | null
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6823,14 +6804,14 @@ export namespace Prisma {
     lastAlertSent?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutBudgetsNestedInput
+    user?: UserUpdateOneRequiredWithoutBudgetsNestedInput
   }
 
   export type BudgetUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     lastAlertSent?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6839,7 +6820,7 @@ export namespace Prisma {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
     lastAlertSent?: Date | string | null
-    userId?: string | null
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6856,7 +6837,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     lastAlertSent?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7266,11 +7247,6 @@ export namespace Prisma {
     _max?: NestedEnumTransactionStatusFilter<$PrismaModel>
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
   export type BudgetCountOrderByAggregateInput = {
     id?: SortOrder
     amount?: SortOrder
@@ -7566,12 +7542,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type UserUpdateOneWithoutBudgetsNestedInput = {
+  export type UserUpdateOneRequiredWithoutBudgetsNestedInput = {
     create?: XOR<UserCreateWithoutBudgetsInput, UserUncheckedCreateWithoutBudgetsInput>
     connectOrCreate?: UserCreateOrConnectWithoutBudgetsInput
     upsert?: UserUpsertWithoutBudgetsInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBudgetsInput, UserUpdateWithoutBudgetsInput>, UserUncheckedUpdateWithoutBudgetsInput>
   }
@@ -8013,7 +7987,7 @@ export namespace Prisma {
     id?: StringFilter<"Budget"> | string
     amount?: DecimalFilter<"Budget"> | Decimal | DecimalJsLike | number | string
     lastAlertSent?: DateTimeNullableFilter<"Budget"> | Date | string | null
-    userId?: StringNullableFilter<"Budget"> | string | null
+    userId?: StringFilter<"Budget"> | string
     createdAt?: DateTimeFilter<"Budget"> | Date | string
     updatedAt?: DateTimeFilter<"Budget"> | Date | string
   }

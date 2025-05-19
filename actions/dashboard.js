@@ -85,9 +85,7 @@ export async function getUserAccounts() {
       },
     });
 
-    const serializedAccounts = accounts.map((account) =>
-      serializeTransaction(account)
-    );
+    const serializedAccounts = accounts.map(serializeTransaction);
     return { success: true, data: serializedAccounts };
   } catch (error) {
     throw new Error(error.message);
