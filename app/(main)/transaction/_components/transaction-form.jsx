@@ -28,7 +28,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { createTransaction, updateTransaction } from "@/actions/transaction";
 import { transactionSchema } from "@/app/lib/schema";
-// import { ReceiptScanner } from "./recipt-scanner";
+import { ReceiptScanner } from "./recipt-scanner";
 import { CreateAccountDrawer } from "@/components/create-accunt-drawer.jsx/CreateAccountDrawer";
 
 export function AddTransactionForm({
@@ -131,7 +131,7 @@ export function AddTransactionForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Receipt Scanner - Only show in create mode */}
-      {/* {!editMode && <ReceiptScanner onScanComplete={handleScanComplete} />} */}
+      {!editMode && <ReceiptScanner onScanComplete={handleScanComplete} />}
 
       {/* Type */}
       <div className="space-y-2">
