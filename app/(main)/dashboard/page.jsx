@@ -1,19 +1,27 @@
+import { Suspense } from "react";
 import { getUserAccounts } from "@/actions/dashboard";
-import { CreateAccountDrawer } from "@/components/create-accunt-drawer.jsx/CreateAccountDrawer";
+import { getDashboardData } from "@/actions/dashboard";
+import { getCurrentBudget } from "@/actions/budget";
 import { Card, CardContent } from "@/components/ui/card";
 import { Plus } from "lucide-react";
-import React from "react";
 import { AccountCard } from "./_components/account-card/AccountCard";
-import { getCurrentBudget } from "@/actions/budget";
 import { BudgetProgress } from "./_components/budget-progress/BudgetProgress";
+import { DashboardOverview } from "./_components/transaction-overview/TransactionOverview";
+import { CreateAccountDrawer } from "@/components/create-accunt-drawer.jsx/CreateAccountDrawer";
 
-const DashboardPage = async () => {
-  const accounts = await getUserAccounts();
+export default async function DashboardPage() {
+  const [accounts, transactions] = await Promise.all([
+    getUserAccounts(),
+    getDashboardData(),
+  ]);
 
   const defaultAccount = accounts?.data?.find((account) => account.isDefault);
 
+  // Get budget for default account
   let budgetData = null;
-  if (defaultAccount) budgetData = await getCurrentBudget(defaultAccount.id);
+  if (defaultAccount) {
+    budgetData = await getCurrentBudget(defaultAccount.id);
+  }
 
   return (
     <div className="space-y-8">
@@ -24,10 +32,10 @@ const DashboardPage = async () => {
       />
 
       {/* Dashboard Overview */}
-      {/* <DashboardOverview
-        accounts={accounts}
+      <DashboardOverview
+        accounts={accounts?.data}
         transactions={transactions || []}
-      /> */}
+      />
 
       {/* Accounts Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -39,13 +47,11 @@ const DashboardPage = async () => {
             </CardContent>
           </Card>
         </CreateAccountDrawer>
-        {accounts.data.length > 0 &&
-          accounts?.data.map((account) => (
+        {accounts?.data.length > 0 &&
+          accounts?.data?.map((account) => (
             <AccountCard key={account.id} account={account} />
           ))}
       </div>
     </div>
   );
-};
-
-export default DashboardPage;
+}
