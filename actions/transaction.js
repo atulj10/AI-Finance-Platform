@@ -31,7 +31,10 @@ export async function createTransaction(data) {
       requested: 1,
     });
 
-    if (decision.isDenied) {
+    console.log(decision);
+    
+
+    if (decision.isDenied()) {
       if (decision.reason.isRateLimit()) {
         const { remaining, reset } = decision.reason;
         console.error({
