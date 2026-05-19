@@ -232,8 +232,12 @@ const LandingPage = () => {
             Ready to Take Control of Your Finances?
           </h2>
           <p className="text-black-200 mb-10 max-w-2xl mx-auto text-lg md:text-xl">
+<<<<<<< HEAD
             Join thousands of users who are already managing their finances
             smarter with Welth. No credit card required.
+=======
+            Join thousands of users who are already managing their finances smarter with Welth. No credit card required.
+>>>>>>> 31b6682ab2b9368e9c9ff109d4a040f7f156d7df
           </p>
           <Link href="/dashboard">
             <Button
