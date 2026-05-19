@@ -207,10 +207,10 @@ const LandingPage = () => {
           transition={{ duration: 0.5 }}
           className="container mx-auto px-4 text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-black-400 mb-6 tracking-tight">
             Ready to Take Control of Your Finances?
           </h2>
-          <p className="text-blue-100 mb-10 max-w-2xl mx-auto text-lg md:text-xl">
+          <p className="text-black-200 mb-10 max-w-2xl mx-auto text-lg md:text-xl">
             Join thousands of users who are already managing their finances smarter with Welth. No credit card required.
           </p>
           <Link href="/dashboard">
